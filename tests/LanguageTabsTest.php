@@ -1,10 +1,9 @@
 <?php
 
+use Filament\Forms;
 use Illuminate\Support\Facades\Config;
 use Livewire\Livewire;
 use Pixelpeter\FilamentLanguageTabs\Forms\Components\LanguageTabs;
-use Filament\Forms;
-use Filament\Resources\Form;
 use Pixelpeter\FilamentLanguageTabs\Tests\Support\TestableForm;
 
 it('will add a field to the form', function ($field) {
@@ -19,7 +18,7 @@ it('will add a field to the form', function ($field) {
                 Forms\Components\TextInput::make('headline')->label('headline')->required(),
                 Forms\Components\TextInput::make('slug')->label('slug'),
                 Forms\Components\MarkdownEditor::make('body')->label('body'),
-            ])
+            ]),
     ];
 
     $component = Livewire::test(TestableForm::class);
@@ -46,7 +45,7 @@ it('will set a field as required when given in required_locales', function ($fie
                 Forms\Components\TextInput::make('headline')->label('headline')->required(),
                 Forms\Components\TextInput::make('slug')->label('slug'),
                 Forms\Components\MarkdownEditor::make('body')->label('body'),
-            ])
+            ]),
     ];
 
     $component = Livewire::test(TestableForm::class);
@@ -69,7 +68,7 @@ it('will set a field as not required when not given in required_locales', functi
                 Forms\Components\TextInput::make('headline')->label('headline')->required(),
                 Forms\Components\TextInput::make('slug')->label('slug'),
                 Forms\Components\MarkdownEditor::make('body')->label('body'),
-            ])
+            ]),
     ];
 
     $component = Livewire::test(TestableForm::class);

@@ -12,6 +12,7 @@ class TestableForm extends Component implements HasForms
     use InteractsWithForms;
 
     public static array $formSchema = [];
+
     public array $data = [];
 
     public $record;

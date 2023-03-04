@@ -34,7 +34,7 @@ class LanguageTabs
 
     public static function make(Form $form = null): static
     {
-        if (!$form) {
+        if (! $form) {
             $form = Form::make();
         }
 
@@ -49,7 +49,7 @@ class LanguageTabs
         $tabfields = [];
         foreach ($components as $component) {
             $clone = clone $component;
-            $name = $clone->getName().".".$locale;
+            $name = $clone->getName().'.'.$locale;
             $clone->name($name);
             $clone->statePath($name);
 

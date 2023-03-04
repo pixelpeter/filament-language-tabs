@@ -9,7 +9,7 @@ use Illuminate\Testing\Assert;
 
 class TestsForms extends \Filament\Forms\Testing\TestsForms
 {
-    function assertFormFieldIsRequired(): Closure
+    public function assertFormFieldIsRequired(): Closure
     {
         return function (string $fieldName, string $formName = 'form') {
             /** @phpstan-ignore-next-line */
@@ -33,7 +33,7 @@ class TestsForms extends \Filament\Forms\Testing\TestsForms
         };
     }
 
-    function assertFormFieldIsNotRequired(): Closure
+    public function assertFormFieldIsNotRequired(): Closure
     {
         return function (string $fieldName, string $formName = 'form') {
             /** @phpstan-ignore-next-line */
