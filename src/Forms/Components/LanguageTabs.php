@@ -34,7 +34,7 @@ final class LanguageTabs
 
     public static function make(Form $form = null): static
     {
-        if (!$form) {
+        if (! $form) {
             $form = Form::make();
         }
 
