@@ -28,7 +28,7 @@ class TestCase extends Orchestra
             LivewireServiceProvider::class,
             FilamentServiceProvider::class,
             FormsServiceProvider::class,
-            // SupportServiceProvider::class,
+            SupportServiceProvider::class,
         ];
     }
 }
