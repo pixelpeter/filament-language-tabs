@@ -18,7 +18,7 @@
     "require": {
         "php": "^8.0|^8.1|^8.2",
         "filament/filament": "^2.0",
-        "illuminate/contracts": "^9.0",
+        "illuminate/contracts": "^9.0|10.*",
         "laravel/framework": "9.*|10.*",
         "orchestra/testbench": "7.*|8.*",
         "spatie/laravel-package-tools": "^1.13.5"
