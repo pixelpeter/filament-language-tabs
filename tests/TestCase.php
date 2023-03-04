@@ -1,40 +1,34 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace Pixelpeter\FilamentLanguageTabs\Tests;
 
 use Filament\FilamentServiceProvider;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Filament\Forms\FormsServiceProvider;
+use Filament\Support\SupportServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
-use VendorName\Skeleton\SkeletonServiceProvider;
+use Pixelpeter\FilamentLanguageTabs\FilamentLanguageTabsServiceProvider;
 
 class TestCase extends Orchestra
 {
+    public function getEnvironmentSetUp($app)
+    {
+        //
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'VendorName\\Skeleton\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
     }
 
     protected function getPackageProviders($app)
     {
         return [
+            FilamentLanguageTabsServiceProvider::class,
             LivewireServiceProvider::class,
             FilamentServiceProvider::class,
-            SkeletonServiceProvider::class,
+            FormsServiceProvider::class,
+            // SupportServiceProvider::class,
         ];
-    }
-
-    public function getEnvironmentSetUp($app)
-    {
-        config()->set('database.default', 'testing');
-
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_skeleton_table.php.stub';
-        $migration->up();
-        */
     }
 }

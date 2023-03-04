@@ -19,7 +19,7 @@
     verbose="true"
 >
     <testsuites>
-        <testsuite name="VendorName Test Suite">
+        <testsuite name="Pixelpeter Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
@@ -36,4 +36,7 @@
     <logging>
         <junit outputFile="build/report.junit.xml"/>
     </logging>
+    <php>
+        <env name="APP_KEY" value="base64:avkCGkeaLkGEs2JqYlung4W2PDVb0oKwGLEJTPeh7U8="/>
+    </php>
 </phpunit>

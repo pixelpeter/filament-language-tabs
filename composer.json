@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "pixelpeter/filament-language-tabs",
+    "description": "Group multilingual fields into tabs",
     "keywords": [
-        ":vendor_name",
+        "pixelpeter",
         "laravel",
-        ":package_slug"
+        "filament-language-tabs"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/pixelpeter/filament-language-tabs",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "pixelpeter",
+            "email": "info@pixelpeter.de",
             "role": "Developer"
         }
     ],
@@ -38,13 +38,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Pixelpeter\\FilamentLanguageTabs\\": "src",
+            "Pixelpeter\\FilamentLanguageTabs\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Pixelpeter\\FilamentLanguageTabs\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -67,10 +67,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "FilamentLanguageTabsServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "LanguageTabs": "Pixelpeter\\LanguageTabs\\Facades\\LanguageTabs"
             }
         }
     },
