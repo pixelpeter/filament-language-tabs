@@ -6,7 +6,7 @@ use Filament\Forms;
 use Filament\Forms\Components\Tabs;
 use Filament\Resources\Form;
 
-class LanguageTabs
+final class LanguageTabs
 {
     public function __construct(
         public Form $form,
@@ -34,7 +34,7 @@ class LanguageTabs
 
     public static function make(Form $form = null): static
     {
-        if (! $form) {
+        if (!$form) {
             $form = Form::make();
         }
 
