@@ -20,6 +20,6 @@ class FilamentLanguageTabsServiceProvider extends PluginServiceProvider
 
     public function packageBooted(): void
     {
-        TestableLivewire::mixin(new TestsForms());
+        TestableLivewire::mixin(new TestsForms);
     }
 }

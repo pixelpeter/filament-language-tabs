@@ -10,8 +10,7 @@ final class LanguageTabs
 {
     public function __construct(
         public Form $form,
-    ) {
-    }
+    ) {}
 
     public function schema(array $components): Tabs
     {
@@ -32,13 +31,13 @@ final class LanguageTabs
             );
     }
 
-    public static function make(Form $form = null): static
+    public static function make(?Form $form = null): static
     {
         if (! $form) {
             $form = Form::make();
         }
 
-        return new static(form: $form);
+        return new self(form: $form);
     }
 
     protected function tabfields(array $components, string $locale): array
