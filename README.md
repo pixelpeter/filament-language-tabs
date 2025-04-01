@@ -1,9 +1,13 @@
 # Group multilingual fields into tabs
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/pixelpeter/filament-language-tabs.svg?style=flat-square)](https://packagist.org/packages/pixelpeter/filament-language-tabs)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/pixelpeter/filament-language-tabs/run-tests?label=tests)](https://github.com/pixelpeter/filament-language-tabs/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/pixelpeter/filament-language-tabs/Check%20&%20fix%20styling?label=code%20style)](https://github.com/pixelpeter/filament-language-tabs/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/pixelpeter/filament-language-tabs.svg?style=flat-square&t=123)](https://packagist.org/packages/pixelpeter/filament-language-tabs)
 [![Total Downloads](https://img.shields.io/packagist/dt/pixelpeter/filament-language-tabs.svg?style=flat-square)](https://packagist.org/packages/pixelpeter/filament-language-tabs)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Coverage Status](https://coveralls.io/repos/github/pixelpeter/filament-language-tabs/badge.svg?branch=master)](https://coveralls.io/github/pixelpeter/filament-language-tabs?branch=master)
+[![Tests](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/run-tests.yml/badge.svg?branch=master)](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/run-tests.yml)
+[![Fix PHP code style issues](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/fix-php-code-style-issues.yml/badge.svg)](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/fix-php-code-style-issues.yml)
+[![PHPStan](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/phpstan.yml/badge.svg)](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/phpstan.yml)
+[![dependabot-auto-merge](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/dependabot-auto-merge.yml/badge.svg)](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/dependabot-auto-merge.yml)
 
 This package is a Filament plugin that allows you to group multilingual fields into tabs
 ![](images/filament-language-tabs-example.de.png)
