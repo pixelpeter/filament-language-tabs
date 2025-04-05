@@ -1,0 +1,6 @@
+<div>
+    {{$getChildComponentContainer()}}
+</div>
+
+
+

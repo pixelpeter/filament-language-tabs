@@ -2,42 +2,64 @@
 
 namespace Pixelpeter\FilamentLanguageTabs\Forms\Components;
 
-use Filament\Forms;
+use Closure;
+use Filament\Forms\Components\Component;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Tabs;
-use Filament\Resources\Form;
+use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Concerns\BelongsToParentComponent;
+use Filament\Forms\Concerns\HasComponents;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Form;
 
-final class LanguageTabs
+class LanguageTabs extends Component
 {
-    public function __construct(
-        public Form $form,
-    ) {}
+    use BelongsToParentComponent;
+    use HasComponents;
+    use InteractsWithForms;
 
-    public function schema(array $components): Tabs
+    /**
+     * @var view-string
+     */
+    /** @phpstan-ignore-next-line */
+    protected string $view = 'filament-language-tabs::forms.components.language-tabs';
+
+    final public function __construct(array|Closure $schema)
+    {
+        $this->schema($schema);
+    }
+
+    public function schema(Closure|Form|array $components): static
     {
         $locales = config('filament-language-tabs.default_locales');
         $locales = array_unique($locales);
 
         $tabs = [];
         foreach ($locales as $locale) {
-            $tabs[] = Forms\Components\Tabs\Tab::make(strtoupper($locale))
+            $tabs[] = Tab::make(strtoupper($locale))
                 ->schema(
                     $this->tabfields($components, $locale)
                 );
         }
 
-        return Forms\Components\Tabs::make('LanguageTabs')
+        $t = Tabs::make('LanguageTabs')
             ->schema(
                 $tabs
             );
+        $this->childComponents([
+            $t,
+        ]);
+
+
+        return $this;
     }
 
-    public static function make(?Form $form = null): static
+    public static function make(array|Closure $schema): static
     {
-        if (! $form) {
-            $form = Form::make();
-        }
+        $static = app(static::class, ['schema' => $schema]);
+        $static->configure();
 
-        return new self(form: $form);
+        return $static;
     }
 
     protected function tabfields(array $components, string $locale): array
@@ -60,6 +82,7 @@ final class LanguageTabs
 
             $tabfields[] = $clone;
         }
+        $tabfields[] = Hidden::make('locale')->default($locale);
 
         return $tabfields;
     }

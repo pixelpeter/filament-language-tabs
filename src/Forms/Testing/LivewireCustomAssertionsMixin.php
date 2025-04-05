@@ -4,10 +4,16 @@ namespace Pixelpeter\FilamentLanguageTabs\Forms\Testing;
 
 use Closure;
 use Filament\Forms\ComponentContainer;
-use Filament\Forms\Components\Field;
+use Filament\Forms\Contracts\HasForms;
 use Illuminate\Testing\Assert;
+use Livewire\Features\SupportTesting\Testable;
 
-class TestsForms extends \Filament\Forms\Testing\TestsForms
+/**
+ * @method HasForms instance()
+ *
+ * @mixin Testable
+ */
+class LivewireCustomAssertionsMixin
 {
     public function assertFormFieldIsRequired(): Closure
     {
@@ -18,10 +24,8 @@ class TestsForms extends \Filament\Forms\Testing\TestsForms
             $livewire = $this->instance();
             $livewireClass = $livewire::class;
 
-            /** @var ComponentContainer $form */
             $form = $livewire->{$formName};
 
-            /** @var Field $field */
             $field = $form->getFlatFields(withHidden: true)[$fieldName];
 
             Assert::assertTrue(
@@ -45,7 +49,6 @@ class TestsForms extends \Filament\Forms\Testing\TestsForms
             /** @var ComponentContainer $form */
             $form = $livewire->{$formName};
 
-            /** @var Field $field */
             $field = $form->getFlatFields(withHidden: true)[$fieldName];
 
             Assert::assertFalse(

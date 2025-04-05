@@ -1,3 +1,5 @@
+![](https://banners.beyondco.de/Filament%20Language%20Tabs.png?theme=light&packageManager=composer+require&packageName=pixelpeter%2Ffilament-language-tabs&pattern=architect&style=style_1&description=Group+multilingual+fields+into+tabs&md=1&showWatermark=0&fontSize=100px&images=translate)
+
 # Group multilingual fields into tabs
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/pixelpeter/filament-language-tabs.svg?style=flat-square&t=123)](https://packagist.org/packages/pixelpeter/filament-language-tabs)
@@ -9,8 +11,17 @@
 [![PHPStan](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/phpstan.yml/badge.svg)](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/phpstan.yml)
 [![dependabot-auto-merge](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/dependabot-auto-merge.yml/badge.svg)](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/dependabot-auto-merge.yml)
 
-This package is a Filament plugin that allows you to group multilingual fields into tabs
+This package is a Filament plugin that allows you to group multilingual fields into tabs. It can be configured which
+languages are required to be filled out.
+
 ![](images/filament-language-tabs-example.de.png)
+
+## Compatibility
+
+| Filament | branch/tag   |
+|----------|--------------|
+| v3.x     | master, v2.x |
+| v2.x     | v1.x         |
 
 ## Installation
 
@@ -58,7 +69,7 @@ return [
 ];
 ```
 
-## Usage
+## Usage (filamentphp V3.x)
 
 ### Prerequisites
 
@@ -68,7 +79,7 @@ return [
 composer require spatie/laravel-translatable
 ```
 
-#### Make the model for translations
+#### Create a model and make it translatable
 
 ```php
 // Models/Post.php
@@ -86,7 +97,11 @@ class Post extends Model
 
     protected $guarded = ['id'];
 }
+```
 
+#### Create a migration for the model
+
+```php
 // database/migrations
 ...    
 public function up(): void
@@ -119,13 +134,11 @@ class PostResource extends Resource
             ->schema([
                 Forms\Components\Grid::make(1)
                     ->schema([
-                        LanguageTabs::make($form)
-                            ->schema([
-                                Forms\Components\TextInput::make('headline')->label('headline')->required(),
-                                Forms\Components\TextInput::make('slug')->label('slug'),
-                                Forms\Components\MarkdownEditor::make('body')->label('body'),
-                            ]),
-
+                        LanguageTabs::make([
+                            Forms\Components\TextInput::make('headline')->label('headline')->required(),
+                            Forms\Components\TextInput::make('slug')->label('slug'),
+                            Forms\Components\MarkdownEditor::make('body')->label('body'),   
+                        ]),
                     ]),
             ]);
     }
@@ -153,7 +166,7 @@ If a field is defined as `required`
 ...
 ```
 
-it will only be set as required for the languages configure as `required_locals`
+it will only be set as required for the languages configured in `required_locals`
 
 ```php
 // config/filament-language-tabs.php

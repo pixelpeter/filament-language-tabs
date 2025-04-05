@@ -1,10 +1,7 @@
 <?php
 
-use Filament\Forms;
-use Illuminate\Support\Facades\Config;
-use Livewire\Livewire;
-use Pixelpeter\FilamentLanguageTabs\Forms\Components\LanguageTabs;
-use Pixelpeter\FilamentLanguageTabs\Tests\Support\TestableForm;
+use Pixelpeter\FilamentLanguageTabs\Tests\Fixtures\TestForm;
+use function Pest\Livewire\livewire;
 
 it('will add a field to the form', function ($field) {
     Config::set('filament-language-tabs', [
@@ -12,18 +9,7 @@ it('will add a field to the form', function ($field) {
         'required_locales' => [],
     ]);
 
-    $form = TestableForm::$formSchema = [
-        LanguageTabs::make()
-            ->schema([
-                Forms\Components\TextInput::make('headline')->label('headline')->required(),
-                Forms\Components\TextInput::make('slug')->label('slug'),
-                Forms\Components\MarkdownEditor::make('body')->label('body'),
-            ]),
-    ];
-
-    $component = Livewire::test(TestableForm::class);
-
-    $component->assertFormFieldExists($field);
+    livewire(TestForm::class)->assertFormFieldExists($field);
 })->with([
     'headline.de',
     'headline.en',
@@ -34,23 +20,14 @@ it('will add a field to the form', function ($field) {
 ]);
 
 it('will set a field as required when given in required_locales', function ($field) {
+
+
     Config::set('filament-language-tabs', [
         'default_locales' => ['de', 'en', 'fr'],
         'required_locales' => ['de', 'en'],
     ]);
 
-    $form = TestableForm::$formSchema = [
-        LanguageTabs::make()
-            ->schema([
-                Forms\Components\TextInput::make('headline')->label('headline')->required(),
-                Forms\Components\TextInput::make('slug')->label('slug'),
-                Forms\Components\MarkdownEditor::make('body')->label('body'),
-            ]),
-    ];
-
-    $component = Livewire::test(TestableForm::class);
-
-    $component->assertFormFieldIsRequired($field);
+    livewire(TestForm::class)->assertFormFieldIsRequired($field);
 })->with([
     'headline.de',
     'headline.en',
@@ -62,18 +39,7 @@ it('will set a field as not required when not given in required_locales', functi
         'required_locales' => ['de', 'en'],
     ]);
 
-    $form = TestableForm::$formSchema = [
-        LanguageTabs::make()
-            ->schema([
-                Forms\Components\TextInput::make('headline')->label('headline')->required(),
-                Forms\Components\TextInput::make('slug')->label('slug'),
-                Forms\Components\MarkdownEditor::make('body')->label('body'),
-            ]),
-    ];
-
-    $component = Livewire::test(TestableForm::class);
-
-    $component->assertFormFieldIsNotRequired($field);
+    livewire(TestForm::class)->assertFormFieldIsNotRequired($field);
 })->with([
     'headline.fr',
     'slug.de',
