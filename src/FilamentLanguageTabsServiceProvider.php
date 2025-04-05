@@ -7,7 +7,6 @@ use Pixelpeter\FilamentLanguageTabs\Forms\Testing\LivewireCustomAssertionsMixin;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-
 class FilamentLanguageTabsServiceProvider extends PackageServiceProvider
 {
     public static string $name = 'filament-language-tabs';
@@ -21,6 +20,6 @@ class FilamentLanguageTabsServiceProvider extends PackageServiceProvider
 
     public function bootingPackage(): void
     {
-        Testable::mixin(new LivewireCustomAssertionsMixin());
+        Testable::mixin(new LivewireCustomAssertionsMixin);
     }
 }

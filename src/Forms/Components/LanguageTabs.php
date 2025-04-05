@@ -50,7 +50,6 @@ class LanguageTabs extends Component
             $t,
         ]);
 
-
         return $this;
     }
 

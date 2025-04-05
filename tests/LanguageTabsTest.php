@@ -1,6 +1,7 @@
 <?php
 
 use Pixelpeter\FilamentLanguageTabs\Tests\Fixtures\TestForm;
+
 use function Pest\Livewire\livewire;
 
 it('will add a field to the form', function ($field) {
@@ -20,7 +21,6 @@ it('will add a field to the form', function ($field) {
 ]);
 
 it('will set a field as required when given in required_locales', function ($field) {
-
 
     Config::set('filament-language-tabs', [
         'default_locales' => ['de', 'en', 'fr'],
