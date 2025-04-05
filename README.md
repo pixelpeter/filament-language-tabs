@@ -5,8 +5,8 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/pixelpeter/filament-language-tabs.svg?style=flat-square&t=123)](https://packagist.org/packages/pixelpeter/filament-language-tabs)
 [![Total Downloads](https://img.shields.io/packagist/dt/pixelpeter/filament-language-tabs.svg?style=flat-square)](https://packagist.org/packages/pixelpeter/filament-language-tabs)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Coverage Status](https://coveralls.io/repos/github/pixelpeter/filament-language-tabs/badge.svg?branch=master)](https://coveralls.io/github/pixelpeter/filament-language-tabs?branch=master)
-[![Tests](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/run-tests.yml/badge.svg?branch=master)](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/run-tests.yml)
+[![Coverage Status](https://coveralls.io/repos/github/pixelpeter/filament-language-tabs/badge.svg?branch=main)](https://coveralls.io/github/pixelpeter/filament-language-tabs?branch=main)
+[![Tests](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/run-tests.yml)
 [![Fix PHP code style issues](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/fix-php-code-style-issues.yml/badge.svg)](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/fix-php-code-style-issues.yml)
 [![PHPStan](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/phpstan.yml/badge.svg)](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/phpstan.yml)
 [![dependabot-auto-merge](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/dependabot-auto-merge.yml/badge.svg)](https://github.com/pixelpeter/filament-language-tabs/actions/workflows/dependabot-auto-merge.yml)
@@ -18,10 +18,10 @@ languages are required to be filled out.
 
 ## Compatibility
 
-| Filament | branch/tag   |
-|----------|--------------|
-| v3.x     | master, v2.x |
-| v2.x     | v1.x         |
+| Filament | branch/tag |
+|----------|------------|
+| v3.x     | main, v2.x |
+| v2.x     | v1.x       |
 
 ## Installation
 
