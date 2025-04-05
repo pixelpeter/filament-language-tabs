@@ -11,23 +11,18 @@ use Pixelpeter\FilamentLanguageTabs\FilamentLanguageTabsServiceProvider;
 
 class TestCase extends Orchestra
 {
-    public function getEnvironmentSetUp($app)
-    {
-        //
-    }
-
     protected function setUp(): void
     {
         parent::setUp();
     }
 
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             FilamentLanguageTabsServiceProvider::class,
-            LivewireServiceProvider::class,
             FilamentServiceProvider::class,
             FormsServiceProvider::class,
+            LivewireServiceProvider::class,
             SupportServiceProvider::class,
         ];
     }

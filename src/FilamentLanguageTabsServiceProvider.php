@@ -2,12 +2,12 @@
 
 namespace Pixelpeter\FilamentLanguageTabs;
 
-use Filament\PluginServiceProvider;
-use Livewire\Testing\TestableLivewire;
-use Pixelpeter\FilamentLanguageTabs\Forms\Testing\TestsForms;
+use Livewire\Features\SupportTesting\Testable;
+use Pixelpeter\FilamentLanguageTabs\Forms\Testing\LivewireCustomAssertionsMixin;
 use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class FilamentLanguageTabsServiceProvider extends PluginServiceProvider
+class FilamentLanguageTabsServiceProvider extends PackageServiceProvider
 {
     public static string $name = 'filament-language-tabs';
 
@@ -15,11 +15,11 @@ class FilamentLanguageTabsServiceProvider extends PluginServiceProvider
     {
         $package->name(static::$name)
             ->hasConfigFile()
-            ->hasViews('filament-language-tabs');
+            ->hasViews();
     }
 
-    public function packageBooted(): void
+    public function bootingPackage(): void
     {
-        TestableLivewire::mixin(new TestsForms);
+        Testable::mixin(new LivewireCustomAssertionsMixin);
     }
 }
