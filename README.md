@@ -20,24 +20,25 @@ languages are required to be filled out.
 
 | Filament | branch/tag |
 |----------|------------|
-| v3.x     | main, v2.x |
+| v4.x     | main       |
+| v3.x     | v2.x       |
 | v2.x     | v1.x       |
 
 ## Installation
 
-You can install the package via composer:
+Install the package via composer:
 
 ```bash
 composer require pixelpeter/filament-language-tabs
 ```
 
-You can publish the config file with:
+Publish the config file with:
 
 ```bash
 php artisan vendor:publish --tag="filament-language-tabs-config"
 ```
 
-Optionally, you can publish the views using
+Optionally, publish the view:
 
 ```bash
 php artisan vendor:publish --tag="filament-language-tabs-views"
@@ -69,11 +70,9 @@ return [
 ];
 ```
 
-## Usage (filamentphp V3.x)
+## Prerequisites
 
-### Prerequisites
-
-#### Install spatie-translatable
+### Install spatie-translatable
 
 ```bash
 composer require spatie/laravel-translatable
@@ -117,9 +116,58 @@ public function up(): void
 ...
 ```
 
-### Setup & configuration
+## Setup & configuration
 
-#### Add the LanguageTabs component to your Filament resource
+#### FilamentPHP V4.x
+
+##### Method 1 (preferred): Add the LanguageTabs component to the PostForm schema
+
+```php
+// app/Filament/Resources/Posts/Schemas/PostForm.php
+...
+use Pixelpeter\FilamentLanguageTabs\Forms\Components\LanguageTabs;
+
+class PostForm
+{
+    public static function configure(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                LanguageTabs::make([
+                    TextInput::make('headline')->label('headline')->required(),
+                    TextInput::make('slug')->label('slug'),
+                    MarkdownEditor::make('body')->label('body'),
+                ]),
+            ]);
+    }
+}
+```
+
+
+##### Method 2: Add the LanguageTabs component directly to the Filament resource
+
+```php
+// app/Filament/Resources/PostResource.php
+...
+use Pixelpeter\FilamentLanguageTabs\Forms\Components\LanguageTabs;
+
+class PostResource extends Resource
+{
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->components([
+                LanguageTabs::make([
+                    Forms\Components\TextInput::make('headline')->label('headline')->required(),
+                    Forms\Components\TextInput::make('slug')->label('slug'),
+                    Forms\Components\MarkdownEditor::make('body')->label('body'),   
+                ]),
+            ]);
+    }
+```
+#### FilamentPHP V3.x
+
+##### Add the LanguageTabs component to your Filament resource
 
 ```php
 // app/Filament/Resources/PostResource.php
@@ -132,14 +180,11 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Grid::make(1)
-                    ->schema([
-                        LanguageTabs::make([
-                            Forms\Components\TextInput::make('headline')->label('headline')->required(),
-                            Forms\Components\TextInput::make('slug')->label('slug'),
-                            Forms\Components\MarkdownEditor::make('body')->label('body'),   
-                        ]),
-                    ]),
+                LanguageTabs::make([
+                    Forms\Components\TextInput::make('headline')->label('headline')->required(),
+                    Forms\Components\TextInput::make('slug')->label('slug'),
+                    Forms\Components\MarkdownEditor::make('body')->label('body'),   
+                ]),
             ]);
     }
 ```
@@ -194,7 +239,7 @@ Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+Please review [the security policy](../../security/policy) on how to report security vulnerabilities.
 
 ## Credits
 

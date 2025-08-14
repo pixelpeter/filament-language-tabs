@@ -3,19 +3,15 @@
 namespace Pixelpeter\FilamentLanguageTabs\Forms\Components;
 
 use Closure;
-use Filament\Forms\Components\Component;
 use Filament\Forms\Components\Hidden;
-use Filament\Forms\Components\Tabs;
-use Filament\Forms\Components\Tabs\Tab;
-use Filament\Forms\Concerns\BelongsToParentComponent;
-use Filament\Forms\Concerns\HasComponents;
 use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Form;
+use Filament\Schemas\Components\Component;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
+use Filament\Schemas\Schema;
 
 class LanguageTabs extends Component
 {
-    use BelongsToParentComponent;
-    use HasComponents;
     use InteractsWithForms;
 
     /**
@@ -29,7 +25,7 @@ class LanguageTabs extends Component
         $this->schema($schema);
     }
 
-    public function schema(Closure|Form|array $components): static
+    public function schema(Closure|Schema|array $components): static
     {
         $locales = config('filament-language-tabs.default_locales');
         $locales = array_unique($locales);
@@ -37,12 +33,13 @@ class LanguageTabs extends Component
         $tabs = [];
         foreach ($locales as $locale) {
             $tabs[] = Tab::make(strtoupper($locale))
+                ->key("tab_{$locale}")
                 ->schema(
                     $this->tabfields($components, $locale)
                 );
         }
-
-        $t = Tabs::make('LanguageTabs')
+        $t = Tabs::make()
+            ->key('language_tabs')
             ->schema(
                 $tabs
             );
@@ -69,9 +66,12 @@ class LanguageTabs extends Component
         $tabfields = [];
         foreach ($components as $component) {
             $clone = clone $component;
-            $name = $clone->getName().'.'.$locale;
-            $clone->name($name);
-            $clone->statePath($name);
+            $base = $clone->getName();
+
+            $componentName = "{$base}_{$locale}";
+            $statePath = "{$base}.{$locale}";
+            $clone->name($componentName);
+            $clone->statePath($statePath);
 
             if (in_array($locale, $required_locales) && $component->isRequired()) {
                 $clone->required(true);

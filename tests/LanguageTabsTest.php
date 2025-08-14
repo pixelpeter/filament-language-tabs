@@ -1,6 +1,9 @@
 <?php
 
-use Pixelpeter\FilamentLanguageTabs\Tests\Fixtures\TestForm;
+namespace Pixelpeter\FilamentLanguageTabs\Tests;
+
+use Illuminate\Support\Facades\Config;
+use Pixelpeter\FilamentLanguageTabs\Tests\Fixtures\FormTester;
 
 use function Pest\Livewire\livewire;
 
@@ -10,7 +13,12 @@ it('will add a field to the form', function ($field) {
         'required_locales' => [],
     ]);
 
-    livewire(TestForm::class)->assertFormFieldExists($field);
+    $locale = explode('.', $field)[1];
+    $component = "language_tabs.tab_{$locale}.{$field}";
+
+    livewire(FormTester::class)
+        ->assertFormExists('form')
+        ->assertSchemaComponentExists($component);
 })->with([
     'headline.de',
     'headline.en',
@@ -21,13 +29,21 @@ it('will add a field to the form', function ($field) {
 ]);
 
 it('will set a field as required when given in required_locales', function ($field) {
-
     Config::set('filament-language-tabs', [
         'default_locales' => ['de', 'en', 'fr'],
         'required_locales' => ['de', 'en'],
     ]);
 
-    livewire(TestForm::class)->assertFormFieldIsRequired($field);
+    $locale = explode('.', $field)[1];
+    $component = "language_tabs.tab_{$locale}.{$field}";
+
+    livewire(FormTester::class)
+        ->assertFormExists('form')
+        ->assertSchemaComponentExists($component)
+        ->assertFormFieldExists("language_tabs.tab_{$locale}.{$field}", function ($field) {
+            return $field->isRequired();
+        });
+
 })->with([
     'headline.de',
     'headline.en',
@@ -39,7 +55,15 @@ it('will set a field as not required when not given in required_locales', functi
         'required_locales' => ['de', 'en'],
     ]);
 
-    livewire(TestForm::class)->assertFormFieldIsNotRequired($field);
+    $locale = explode('.', $field)[1];
+    $component = "language_tabs.tab_{$locale}.{$field}";
+
+    livewire(FormTester::class)
+        ->assertFormExists('form')
+        ->assertSchemaComponentExists($component)
+        ->assertFormFieldExists("language_tabs.tab_{$locale}.{$field}", function ($field) {
+            return ! $field->isRequired();
+        });
 })->with([
     'headline.fr',
     'slug.de',

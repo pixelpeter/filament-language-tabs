@@ -2,35 +2,21 @@
 
 namespace Pixelpeter\FilamentLanguageTabs\Tests\Fixtures;
 
-use Filament\Forms;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
-use Livewire\Component;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Schema;
 use Pixelpeter\FilamentLanguageTabs\Forms\Components\LanguageTabs;
 
-class TestForm extends Component implements HasForms
+class TestForm
 {
-    use InteractsWithForms;
-
-    public ?array $data = [];
-
-    public function render(): string
+    public static function configure(Schema $schema): Schema
     {
-        return <<<'HTML'
-        <div>{{ $this->form }}</div>
-        HTML;
-    }
-
-    public function form(Form $form): Form
-    {
-        return $form
-            ->statePath('data')
-            ->schema([
+        return $schema
+            ->components([
                 LanguageTabs::make([
-                    Forms\Components\TextInput::make('headline')->label('headline')->required(),
-                    Forms\Components\TextInput::make('slug')->label('slug'),
-                    Forms\Components\MarkdownEditor::make('body')->label('body'),
+                    TextInput::make('headline')->label('headline')->required(),
+                    TextInput::make('slug')->label('slug'),
+                    MarkdownEditor::make('body')->label('body'),
                 ]),
             ]);
     }
