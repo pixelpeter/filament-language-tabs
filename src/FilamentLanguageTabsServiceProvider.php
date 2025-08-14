@@ -2,8 +2,6 @@
 
 namespace Pixelpeter\FilamentLanguageTabs;
 
-use Livewire\Features\SupportTesting\Testable;
-use Pixelpeter\FilamentLanguageTabs\Forms\Testing\LivewireCustomAssertionsMixin;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -16,10 +14,5 @@ class FilamentLanguageTabsServiceProvider extends PackageServiceProvider
         $package->name(static::$name)
             ->hasConfigFile()
             ->hasViews();
-    }
-
-    public function bootingPackage(): void
-    {
-        Testable::mixin(new LivewireCustomAssertionsMixin);
     }
 }
