@@ -81,6 +81,8 @@ composer require spatie/laravel-translatable
 #### Create a model and make it translatable
 
 ```php
+use Spatie\Translatable\HasTranslations;
+
 // Models/Post.php
 class Post extends Model
 {
