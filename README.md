@@ -20,7 +20,8 @@ languages are required to be filled out.
 
 | Filament | branch/tag |
 |----------|------------|
-| v4.x     | main       |
+| v5.x     | main       |
+| v4.x     | v3.x       |
 | v3.x     | v2.x       |
 | v2.x     | v1.x       |
 
