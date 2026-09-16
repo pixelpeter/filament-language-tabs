@@ -18,11 +18,22 @@ languages are required to be filled out.
 
 ## Compatibility
 
-| Filament | branch/tag |
-|----------|------------|
-| v4.x     | main       |
-| v3.x     | v2.x       |
-| v2.x     | v1.x       |
+This is the Filament 4.x line, maintained on the `v4.x` branch and released as `v4.0.0` and later. From `v4.0.0` on,
+the plugin's major version matches the Filament major version it supports.
+
+| Filament | composer  | branch |
+|----------|-----------|--------|
+| v5.x     | `^5.0`    | v5.x   |
+| v4.x     | `^4.0`    | v4.x   |
+
+Releases before `v4.0.0` used a different scheme, where the plugin's major version trailed the Filament major version
+by one. They remain available and unchanged.
+
+| Filament | composer  | branch |
+|----------|-----------|--------|
+| v4.x     | `^3.0`    | v4.x   |
+| v3.x     | `^2.0`    | v2.x   |
+| v2.x     | `^1.0`    | v1.x   |
 
 ## Installation
 
