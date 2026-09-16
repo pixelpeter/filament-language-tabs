@@ -25,6 +25,14 @@ languages are required to be filled out.
 | v3.x     | v2.x       |
 | v2.x     | v1.x       |
 
+## Requirements
+
+| Requirement | Versions          |
+|-------------|-------------------|
+| PHP         | 8.3, 8.4, 8.5     |
+| Laravel     | 12.x, 13.x        |
+| Filament    | 5.x               |
+
 ## Installation
 
 Install the package via composer:
