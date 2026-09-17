@@ -21,19 +21,25 @@ languages are required to be filled out.
 From `v4.0.0` on, the plugin's major version matches the Filament major version it supports: require `^5.0` for
 Filament 5.x and `^4.0` for Filament 4.x.
 
+Only these two lines are maintained. `main` is where the Filament 5.x line is developed; the `v5.x` branch tracks it
+and carries the released state.
+
 | Filament | composer  | branch | development |
 |----------|-----------|--------|-------------|
 | v5.x     | `^5.0`    | v5.x   | main        |
 | v4.x     | `^4.0`    | v4.x   | v4.x        |
 
-Releases before `v4.0.0` used a different scheme, where the plugin's major version trailed the Filament major version
-by one. They remain available and unchanged.
+### Deprecated releases
 
-| Filament | composer  | branch |
-|----------|-----------|--------|
-| v4.x     | `^3.0`    | v4.x   |
-| v3.x     | `^2.0`    | v2.x   |
-| v2.x     | `^1.0`    | v1.x   |
+Releases before `v4.0.0` used a different scheme, where the plugin's major version trailed the Filament major version
+by one. They remain installable and unchanged, but they are no longer maintained: they receive no fixes and no further
+releases.
+
+| Filament | composer  | branch | status                             |
+|----------|-----------|--------|------------------------------------|
+| v4.x     | `^3.0`    | v4.x   | deprecated, superseded by `^4.0`   |
+| v3.x     | `^2.0`    | v2.x   | deprecated, no successor           |
+| v2.x     | `^1.0`    | v1.x   | deprecated, no successor           |
 
 ## Requirements
 

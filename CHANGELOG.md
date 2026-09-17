@@ -73,10 +73,40 @@ From this release on, the mapping is one to one: install `^4.0` for Filament 4.x
 
 Releases before `v4.0.0` used a different scheme, where the plugin major trailed the Filament major by one: `v3.0.0` supports Filament 4.x, `v2.0.0` supports Filament 3.x and `v1.0.0` supports Filament 2.x. Those releases stay available and unchanged.
 
+## v3.0.0 - 2025-08-14
+
+**Deprecated.** This release is the Filament 4.x line under the old numbering scheme, where the plugin major version trailed the Filament major version by one. It is no longer maintained. The Filament 4.x line continues as `v4.0.0` on the `v4.x` branch.
+
+### Added
+
+- Support for Filament 4.x, in #19.
+
+## v2.0.1 - 2025-04-14
+
+**Deprecated.** This release supports Filament 3.x and is no longer maintained. There is no successor release for the Filament 3.x line.
+
+The tag is `v.2.0.1`. The extra dot is a typo that is kept so that existing installations keep resolving.
+
+### Fixed
+
+- PHPStan findings, in #11.
+
+### Changed
+
+- Bumped `dependabot/fetch-metadata` from 1.6.0 to 2.3.0, in #12.
+- Bumped `aglipanci/laravel-pint-action` from 2.3.0 to 2.3.1, in #13, and from 2.3.1 to 2.5, in #15.
+- Bumped `ramsey/composer-install` from 2 to 3, in #14.
+
+## v2.0.0 - 2025-04-05
+
+**Deprecated.** This release supports Filament 3.x and is no longer maintained. There is no successor release for the Filament 3.x line.
+
+### Added
+
+- Support for Filament 3.x.
+
 ## v1.0.0 - 2025-04-02
 
-Initial release for [Filament 2.x](https://github.com/filamentphp/filament/tree/2.x)
+**Deprecated.** This release supports Filament 2.x and is no longer maintained. There is no successor release for the Filament 2.x line.
 
-## 1.0.0 - 202X-XX-XX
-
-- initial release
+Initial release for [Filament 2.x](https://github.com/filamentphp/filament/tree/2.x).
