@@ -54,8 +54,32 @@ jobs:
 
       - name: Upload coverage results to Coveralls
         uses: coverallsapp/github-action@v2
-        env:
-          github-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
-          # Note: This is the only path that the Coveralls GitHub Action supports.
-          # So we cannot use something like .Build/coverage/clover.xml here.
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           file: build/logs/clover.xml
+          # Every matrix job reports coverage for the same commit. Without
+          # parallel mode the first job to finish closes the Coveralls build
+          # and every later job is rejected with "Can't add a job to a build
+          # that is already closed", which fails that job and, because
+          # fail-fast is on, cancels the rest of the matrix.
+          parallel: true
+          # Coveralls needs a distinct flag per parallel job. The matrix values
+          # contain dots and asterisks, so the job index is used instead.
+          flag-name: run-${{ strategy.job-index }}
+
+  coverage:
+    name: Close Coveralls build
+    needs: test
+    # Runs even when the matrix fails, so a build is never left open.
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Close the parallel Coveralls build
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel-finished: true
+          # Flags that did not report in this build, because fail-fast
+          # cancelled them, carry their coverage forward from the last build.
+          carryforward: "run-0,run-1,run-2,run-3,run-4,run-5"
