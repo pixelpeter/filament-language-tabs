@@ -10,3 +10,14 @@ updates:
       interval: "weekly"
     labels:
       - "dependencies"
+
+  # Dependabot reads this file only from the default branch, so a maintained
+  # release line needs its own block with target-branch. Without it v4.x
+  # receives no updates and drifts, as it did before #34.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    target-branch: "v4.x"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
