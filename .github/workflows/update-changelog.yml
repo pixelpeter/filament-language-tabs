@@ -11,9 +11,15 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
-          ref: main
+          ref: v4.x
+          # No token override here, unlike main. v4.x carries no branch
+          # protection, so the default GITHUB_TOKEN can push to it. Passing
+          # CHANGELOG_TOKEN would persist an admin-owned PAT in .git/config
+          # for every later step, including the third-party actions below.
+          # If protection is ever enabled on v4.x, add the token back and
+          # pin those actions to commit SHAs first.
 
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
@@ -24,6 +30,6 @@ jobs:
       - name: Commit updated CHANGELOG
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          branch: main
+          branch: v4.x
           commit_message: Update CHANGELOG
           file_pattern: CHANGELOG.md
