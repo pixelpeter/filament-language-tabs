@@ -5,13 +5,20 @@ on:
     types: [released]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   update:
     runs-on: ubuntu-latest
 
     steps:
+      # This job checks out with an admin-owned token and leaves it in the
+      # runner's git config for the commit step, so every action below is
+      # pinned to a commit SHA. A moving tag would let a compromised release
+      # of one of them use that token. Dependabot still updates the pins.
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
           # The default GITHUB_TOKEN cannot push to main. Branch protection
@@ -24,13 +31,13 @@ jobs:
           token: ${{ secrets.CHANGELOG_TOKEN || github.token }}
 
       - name: Update Changelog
-        uses: stefanzweifel/changelog-updater-action@v1
+        uses: stefanzweifel/changelog-updater-action@a938690fad7edf25368f37e43a1ed1b34303eb36 # v1
         with:
           latest-version: ${{ github.event.release.name }}
           release-notes: ${{ github.event.release.body }}
 
       - name: Commit updated CHANGELOG
-        uses: stefanzweifel/git-auto-commit-action@v7
+        uses: stefanzweifel/git-auto-commit-action@4a55954c782fc1ea30b9056cd3e7a2b40ca8887d # v7
         with:
           branch: main
           commit_message: Update CHANGELOG
