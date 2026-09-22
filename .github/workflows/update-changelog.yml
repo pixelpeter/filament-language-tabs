@@ -13,7 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
         with:
-          ref: main
+          ref: v4.x
+          # Mirrors the fix on main: the default GITHUB_TOKEN is not a
+          # repository admin, so a protected branch rejects its push with
+          # GH006. CHANGELOG_TOKEN is a fine-grained PAT owned by an admin.
+          # The fallback keeps the checkout working if the secret is missing.
+          token: ${{ secrets.CHANGELOG_TOKEN || github.token }}
 
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
@@ -24,6 +29,6 @@ jobs:
       - name: Commit updated CHANGELOG
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          branch: main
+          branch: v4.x
           commit_message: Update CHANGELOG
           file_pattern: CHANGELOG.md
