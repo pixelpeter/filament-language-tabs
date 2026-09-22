@@ -2,9 +2,9 @@ name: run-tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [ v4.x ]
   pull_request:
-    branches: [ main ]
+    branches: [ v4.x ]
   workflow_dispatch:
 
 jobs:
