@@ -57,6 +57,13 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           file: build/logs/clover.xml
+          # The action installs its reporter by downloading a checksum file
+          # from GitHub releases. When GitHub serves an error page instead,
+          # the step exits 1 with "Checksum verification failed (Linux)" and
+          # fails the build over a coverage upload. Every exit in that script
+          # is guarded by this input, so a transient outage no longer reds a
+          # run whose tests passed.
+          fail-on-error: false
           # Every matrix job reports coverage for the same commit. Without
           # parallel mode the first job to finish closes the Coveralls build
           # and every later job is rejected with "Can't add a job to a build
@@ -80,6 +87,10 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel-finished: true
+          # Same transient-outage tolerance as the upload step. A build left
+          # open is reconciled by the next run's carryforward, so an outage
+          # here should not red an otherwise passing run either.
+          fail-on-error: false
           # Flags that did not report in this build, because fail-fast
           # cancelled them, carry their coverage forward from the last build.
           carryforward: "run-0,run-1,run-2,run-3,run-4,run-5"
