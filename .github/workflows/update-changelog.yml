@@ -14,11 +14,12 @@ jobs:
         uses: actions/checkout@v7
         with:
           ref: v4.x
-          # Mirrors the fix on main: the default GITHUB_TOKEN is not a
-          # repository admin, so a protected branch rejects its push with
-          # GH006. CHANGELOG_TOKEN is a fine-grained PAT owned by an admin.
-          # The fallback keeps the checkout working if the secret is missing.
-          token: ${{ secrets.CHANGELOG_TOKEN || github.token }}
+          # No token override here, unlike main. v4.x carries no branch
+          # protection, so the default GITHUB_TOKEN can push to it. Passing
+          # CHANGELOG_TOKEN would persist an admin-owned PAT in .git/config
+          # for every later step, including the third-party actions below.
+          # If protection is ever enabled on v4.x, add the token back and
+          # pin those actions to commit SHAs first.
 
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
