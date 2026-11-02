@@ -34,7 +34,7 @@
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-deprecation-rules": "^2.0",
         "phpstan/phpstan-phpunit": "^2.0",
-        "phpunit/phpunit": "^12.0",
+        "phpunit/phpunit": "^12.0|^13.4.5",
         "soloterm/dumps": "^1.0"
     },
     "autoload": {
